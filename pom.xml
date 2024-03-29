@@ -6,9 +6,13 @@
   <groupId>pt.com.daniel</groupId>
   <artifactId>kafka-example</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
+    <modules>
+        <module>producer</module>
+        <module>consumer</module>
+    </modules>
 
-  <parent>
+    <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.2.4</version>
