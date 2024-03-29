@@ -64,12 +64,25 @@ Topic: example-cgi      TopicId: IPRBwZRBSISCMc76-Lekwg PartitionCount: 1       
 Now, the topic is created and ready to receive messages.
 
 ## Message Producer
-Simply run the main class of the project pt/com/daniel/kafka/ProducerApp.java. It will start a Spring Boot application listening on port 8080, awaiting messages from the API of this project.
+Simply run the jar file like below.
+
+```console
+java -jar producer-1.0-SNAPSHOT.jar
+```
+
+It will start a Spring Boot application listening on port 8080, awaiting messages from the API of this project.
 
 ## Message Consumer
-Just execute the main class of the project pt/com/daniel/kafka/ConsumerApp.java. It will start a Spring Boot application listening on port 18080, awaiting messages from the API of this project.
 
-## Envio de mensagens
+Simply run the jar file like below.
+
+```console
+java -jar consumer-1.0-SNAPSHOT.jar
+```
+
+It will start a Spring Boot application listening on port 18080, awaiting messages from the API of this project.
+
+## Message sending
 You can utilize any REST client and make a POST request to localhost:8080.
 
 URL: http://localhost:8080/api/v1/messages
