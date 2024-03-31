@@ -33,3 +33,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Project particular ###
+parent-pom.xml
+producer/parent-pom.xml
+consumer/parent-pom.xml
