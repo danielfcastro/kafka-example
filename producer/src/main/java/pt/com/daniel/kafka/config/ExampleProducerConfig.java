@@ -15,7 +15,7 @@ import java.util.Map;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class ExampleProducerConfig {
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
     @Value("${spring.kafka.producer.key-serializer}")

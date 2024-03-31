@@ -11,8 +11,9 @@ public class ProducerApp {
 
     public static void main(String[] args) {
         SpringApplication.run(ProducerApp.class, args);
+        System.out.println("ProducerApp is running");
     }
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(KafkaTemplate<String, String> kafkaTemplate){
         return args-> {
             for(int i=1; i < 100; i++){
