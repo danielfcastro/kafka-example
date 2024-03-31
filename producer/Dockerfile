@@ -21,8 +21,6 @@ COPY . /usr/src/myapp
 WORKDIR /usr/src/myapp
 # Adjusting the module's pom.xml to reference the new parent-pom.xml
 RUN sed -i 's/<relativePath>..\/pom.xml<\/relativePath>/<relativePath>.\/parent-pom.xml<\/relativePath>/' /usr/src/myapp/pom.xml
-RUN cat /usr/src/myapp/pom.xml
-
 RUN mvn clean install
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/producer-1.0-SNAPSHOT.jar

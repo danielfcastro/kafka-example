@@ -16,6 +16,14 @@ This encompasses a set of classes responsible for message production and consump
 
 # Compilation
 The project is built using Maven, JDK 21, and spring-boot 3.2.4.
+For now because the project is built in modules it is still required to copy the pom.xml from the parent to each module and rename to parent-pom.xml.
+This will be fixed in the future.
+That step is required because when you run the docker build the line
+```
+RUN sed -i 's/<relativePath>..\/pom.xml<\/relativePath>/<relativePath>.\/parent-pom.xml<\/relativePath>/' /usr/src/myapp/pom.xml
+```
+it will replace the relativePath of module pom.xml and when you build after that, the parent-pom.xml will not be found if you do not copy as instructed.
+
 ```console
 mvn clean install
 ```
@@ -33,11 +41,11 @@ net stop iphlpsvc
 
 1. Navigate to the kafka folder and execute the following command to start the environment with Zookeeper and a Kafka instance:
 ```console
-docker compose -f zk-single-kafka-single.yml up
+docker compose -f environment.yml up
 ```
 
 ### Topic Creation
-> You'll need the Kafka installation to run the commands below.
+You can use the Kafka installation to run the commands below.
 > If for any reason you forgot to check about processess running at 9092 the kafka docker compose will run but the topic creation and listing part here will fail.
 
 Linux or Mac:
@@ -61,26 +69,9 @@ example-cgi
 Topic: example-cgi      TopicId: IPRBwZRBSISCMc76-Lekwg PartitionCount: 1       ReplicationFactor: 1    Configs:
         Topic: example-cgi      Partition: 0    Leader: 1       Replicas: 1     Isr: 1
 ```
+Or you can connect http://localhost:8090/ and create using the UI
+
 Now, the topic is created and ready to receive messages.
-
-## Message Producer
-Simply run the jar file like below.
-
-```console
-java -jar producer-1.0-SNAPSHOT.jar
-```
-
-It will start a Spring Boot application listening on port 8080, awaiting messages from the API of this project.
-
-## Message Consumer
-
-Simply run the jar file like below.
-
-```console
-java -jar consumer-1.0-SNAPSHOT.jar
-```
-
-It will start a Spring Boot application listening on port 18080, awaiting messages from the API of this project.
 
 ## Message sending
 You can utilize any REST client and make a POST request to localhost:8080.
@@ -94,3 +85,5 @@ JSON BODY
     "message":"Minha mensagem"
 }
 ```
+
+If everything runs as expected you should see the message on the console after you send.
